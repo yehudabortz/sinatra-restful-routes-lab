@@ -18,14 +18,15 @@
     </style>
 </head>
 <body>
-    <button><a href='/recipes/new'>Create New</a></button>
-    <% Recipe.all.each do |r| %>
+    <button><a href='/recipes/<%= "#{@recipe.id}" %>/edit'>Edit</a></button>
     <div>
-        <h2><%= r.name %></h2>
-        <p><%= r.ingredients %></p>
-        <strong><p><%= r.cook_time %></p></strong>
-        <button><a href='/recipes/<%= "#{r.id}" %>'>Read</a></button>
+        <h2><%= @recipe.name %></h2>
+        <p><%= @recipe.ingredients %></p>
+        <strong><p><%= @recipe.cook_time %></p></strong>
+        <form id="delete" method="POST" action='/recipes/<%= "#{@recipe.id}" %>'>
+            <input id="hidden" type="hidden" value="delete" name="_method">
+            <input type="submit" value="delete">
+        </form>
     </div>
-    <% end %>
 </body>
 </html>
